@@ -8,6 +8,11 @@
             "Talkinnl\\DontLeak\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Talkinnl\\DontLeak\\Tests\\": "tests/"
+        }
+    },
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.2",
