@@ -1,0 +1,19 @@
+{
+    "name": "talkinnl/dont-leak",
+    "description": "Safely cleans all own Test properties to prevent phpunit memory leaks",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Talkinnl\\DontLeak\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2",
+        "phpunit/phpunit": "^10.5.0 || ^11.0.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
