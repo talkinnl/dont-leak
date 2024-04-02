@@ -11,6 +11,10 @@ class DontLeak
     private const NAMESPACE_PREFIX_LARAVEL = 'Illuminate';
     private const NAMESPACE_PREFIX_PHPUNIT = 'PHPUnit';
 
+    /**
+     * Unsets all properties reachable in own scope of given $object, and all private properties of parent objects.
+     * Properties defined by PHPUnit WON'T be touched.
+     */
     public static function freeOwnProperties(Test $test): void
     {
         $unsetter = function (string $propertyName): void {
