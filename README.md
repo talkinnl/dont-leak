@@ -1,5 +1,7 @@
 # Don't Leak
 
+[![PHP Composer and unittest](https://github.com/talkinnl/dont-leak/actions/workflows/php.yml/badge.svg)](https://github.com/talkinnl/dont-leak/actions/workflows/php.yml)
+
 PHPUnit keeps all Test instance in memory for the whole run.
 This causes used memory to continuously increase, unless you clean up all your properties during a tearDown().
 
