@@ -15,7 +15,7 @@ class DontLeak
      * Unsets all properties reachable in own scope of given $object, and all private properties of parent objects.
      * Properties defined by PHPUnit WON'T be touched.
      */
-    public static function freeOwnProperties(Test $test): void
+    final public static function freeOwnProperties(Test $test): void
     {
         $unsetter = function (string $propertyName): void {
             unset($this->$propertyName);
