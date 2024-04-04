@@ -22,27 +22,19 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install Composer
-      run: |
-        php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-        php composer-setup.php
-        php -r "unlink('composer-setup.php');"
+    - name: "Install PHP"
+      uses: "shivammathur/setup-php@2.29.0"
+      with:
+        coverage: "none"
+        php-version: "${{ matrix.php-version }}"
+        ini-values: memory_limit=-1
+        tools: composer:v2
       
     - name: Validate composer.json and composer.lock
-      run: php composer.phar validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      run: composer validate --strict
 
     - name: Install dependencies
-      run: php composer.phar install --prefer-dist --no-progress
+      run: composer install --prefer-dist --no-interaction --no-progress
 
     - name: Run tests
-      run: php vendor/bin/phpunit tests/
+      run: make phpunit
