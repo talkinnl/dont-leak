@@ -45,6 +45,6 @@ https://github.com/sebastianbergmann/phpunit/issues/4705
 
 ## Credits
 
-Many suggestions of a tearDown which uses reflection to clean up exist scatter across Stack Overflow, Reddit, Github, etc.
+Many suggestions of a tearDown which uses reflection to clean up exist scattered across Stack Overflow, Reddit, Github, etc.
 
 The implementation was heavily inspired by https://gist.github.com/malarzm/e8c6141b510708e52c8535d2a13cd613 , which unsets instead of assigning null, and also clears private properties of safe parents.
