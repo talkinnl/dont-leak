@@ -30,7 +30,7 @@ jobs:
         php -r "unlink('composer-setup.php');"
       
     - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      run: php composer.phar validate --strict
 
     - name: Cache Composer packages
       id: composer-cache
@@ -42,7 +42,7 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      run: php composer.phar install --prefer-dist --no-progress
 
     - name: Run tests
       run: php vendor/bin/phpunit tests/
