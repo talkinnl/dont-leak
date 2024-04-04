@@ -2,6 +2,10 @@
     "name": "talkinnl/dont-leak",
     "description": "Safely cleans all own Test properties to prevent phpunit memory leaks",
     "type": "library",
+    "keywords": [
+        "phpunit",
+        "testing"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
