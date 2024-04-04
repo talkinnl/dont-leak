@@ -13,24 +13,26 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: ["8.2", "8.3"]
 
     steps:
     - uses: actions/checkout@v3
 
+    - name: "Install PHP"
+      uses: "shivammathur/setup-php@2.29.0"
+      with:
+        coverage: "none"
+        php-version: "${{ matrix.php-version }}"
+        ini-values: memory_limit=-1
+        tools: composer:v2
+      
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --ignore-platform-reqs
+      run: composer install --prefer-dist --no-interaction --no-progress
 
-    - name: Install dependencies
-      run: php vendor/bin/phpunit tests/
+    - name: Run tests
+      run: make phpunit
