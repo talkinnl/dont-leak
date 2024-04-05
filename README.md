@@ -10,7 +10,7 @@ There's No Doubt you'll eventually forget this tedious task.
 ## Installation
 
 ```shell
-composer require --dev talkinnl/dont-speak
+composer require --dev talkinnl/dont-leak
 ```
 
 ## Usage
